@@ -34,6 +34,7 @@ from distutils.dir_util import copy_tree  # copytree from shutil is FUCKING GARB
 
 # set some variables for the file locations
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+HOME_DIR = os.environ['HOME']
 
 metroUrl           = "http://metroforsteam.com/downloads/4.2.4.zip"
 metroPatchUrl      = "http://github.com/redsigma/UPMetroSkin/archive/master.zip"
@@ -44,11 +45,11 @@ metroResource      = os.path.join(ROOT_DIR, "resources/metroZip/")
 metroPatchResource = os.path.join(ROOT_DIR, "resources/metroPatchZip/")
 metroPatchCopy     = os.path.join(ROOT_DIR, "resources/metroPatchZip/UPMetroSkin-master/Unofficial 4.2.4 Patch/Main Files [Install First]/")
 metroCopy          = os.path.join(ROOT_DIR, "resources/metroZip/Metro 4.2.4/")
-metroInstall       = os.path.expanduser("~/.local/share/Steam/skins/Metro 4.2.4 Wal_Mod/")
+metroInstall       = os.path.join(HOME_DIR, ".steam/steam/skins/Metro 4.2.4 Wal_Mod/")
 
 newColors          = os.path.join(ROOT_DIR, "resources/colors.styles")
-wpgConfig          = os.path.expanduser("~/.wallpapers/current.css")
-walConfig          = os.path.expanduser("~/.cache/wal/colors.css")
+wpgConfig          = os.path.join(HOME_DIR, ".wallpapers/current.css")
+walConfig          = os.path.join(HOME_DIR, ".cache/wal/colors.css")
 
 
 def tupToPrint(tup):
@@ -213,6 +214,7 @@ def checkMetroWal():
     
 
 def main(arguments):
+    os.environ['HOME']
     ready = checkMetroWal()
     if not ready:
         # copy metro steam to metro steam wal
